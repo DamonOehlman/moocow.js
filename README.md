@@ -3,6 +3,8 @@
 Play audio when a DOM element has child nodes added. What can I say, I'm
 making the world a better place.
 
+__Now powered by [`mucus`](https://github.com/DamonOehlman/mucus)!!!__
+
 
 [![NPM](https://nodei.co/npm/moocow.png)](https://nodei.co/npm/moocow/)
 
@@ -10,7 +12,20 @@ making the world a better place.
 
 ## Example Usage
 
-To be completed.
+```js
+var moocow = require('moocow');
+var h = require('hyperscript');
+var list = h('ul');
+
+moocow(list);
+
+document.body.appendChild(list);
+
+setInterval(function() {
+  list.appendChild(h('li', 'hello'));
+}, 5000);
+
+```
 
 ## Ready to Use on Any Website
 

@@ -10,9 +10,11 @@ var crel = require('crel');
   Play audio when a DOM element has child nodes added. What can I say, I'm
   making the world a better place.
 
+  __Now powered by [`mucus`](https://github.com/DamonOehlman/mucus)!!!__
+
   ## Example Usage
 
-  To be completed.
+  <<< examples/change.js
 
   ## Ready to Use on Any Website
 
