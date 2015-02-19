@@ -1567,6 +1567,7 @@ module.exports = isArray || function (val) {
 (function (Buffer){
 var extend = require('cog/extend');
 var pluck = require('whisk/pluck');
+var flatten = require('flatten-list');
 
 
 /**
@@ -1578,6 +1579,36 @@ var pluck = require('whisk/pluck');
   ## Example Usage
 
   To be completed.
+
+  ## Ready to Use on Any Website
+
+  Because I know how important this script is, it's been browserified to a UMDjs
+  module that can be included using any script tag using the following url:
+
+  ```html
+  <script src="https://cdn.rawgit.com/DamonOehlman/moocow.js/v1.0.1/bundle.js"></script>
+  <script>
+  var newEl = document.createElement('div');
+
+  moocow(document.body);
+  document.body.appendChild(newEl);
+  </script>
+  ```
+
+  Or you can use it on any site in using developer tools - load the script into the
+  currently displayed page (this might be blocked by cross origin policy):
+
+  ```js
+  var script = document.createElement('script');
+  script.src = 'https://cdn.rawgit.com/DamonOehlman/moocow.js/v1.0.1/bundle.js';
+  document.body.appendChild(script);
+  ```
+
+  Now inspect an element, and you can moocow enable it:
+
+  ```js
+  moocow($0);
+  ```
 
   ## Acknowledgements
 
@@ -1602,8 +1633,7 @@ module.exports = function(target, opts) {
   }
 
   function handleMutations(records) {
-    var addedNodes = records.map(pluck('addedNodes')).reduce(require('whisk/flatten'));
-
+    var addedNodes = flatten(records.map(pluck('addedNodes')));
     if (addedNodes.length > 0) {
       audioFiles.cow.play();
     }
@@ -1619,7 +1649,7 @@ module.exports = function(target, opts) {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":1,"cog/extend":6,"whisk/flatten":7,"whisk/pluck":8}],6:[function(require,module,exports){
+},{"buffer":1,"cog/extend":6,"flatten-list":7,"whisk/pluck":8}],6:[function(require,module,exports){
 /* jshint node: true */
 'use strict';
 
@@ -1655,22 +1685,48 @@ module.exports = function(target) {
   return target;
 };
 },{}],7:[function(require,module,exports){
-/**
-  ## flatten
+var isList;
+if (typeof window !== 'undefined') {
+    // Running in a browser
+    isList = (function(window, Node) {
+        return function(value) {
+            return (
+                value &&
+                typeof value === 'object' &&
+                typeof value.length === 'number' &&
+                !(value instanceof Node) &&
+                value !== window);
+        }
+    })(window, window.Node);
+} else {
+    // Running in non-browser environment
+    isList = function(value) {
+        return (
+            value &&
+            typeof value === 'object' &&
+            typeof value.length === 'number');
+    };
+}
 
-  Flatten an array using `[].reduce`
 
-  <<< examples/flatten.js
+function add(array, value) {
+    if (isList(value)) {
+        for (var i = 0; i < value.length; i++) {
+            add(array, value[i]);
+        }
+    } else {
+        array.push(value);
+    }
+}
 
-**/
+function flatten(value) {
+    var items = [];
+    add(items, value);
+    return items;
+}
 
-module.exports = function(a, b) {
-  // if a is not already an array, make it one
-  a = Array.isArray(a) ? a : [a];
+module.exports = flatten;
 
-  // concat b with a
-  return a.concat(b);
-};
 },{}],8:[function(require,module,exports){
 /**
   ## pluck
