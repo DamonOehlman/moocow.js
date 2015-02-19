@@ -1,6 +1,4 @@
 var extend = require('cog/extend');
-var pluck = require('whisk/pluck');
-var flatten = require('flatten-list');
 var fs = require('fs');
 var bufferUrl = require('buffer-url');
 var crel = require('crel');
