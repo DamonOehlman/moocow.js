@@ -2,6 +2,8 @@ var extend = require('cog/extend');
 var pluck = require('whisk/pluck');
 var flatten = require('flatten-list');
 var fs = require('fs');
+var bufferUrl = require('buffer-url');
+var crel = require('crel');
 
 /**
   # moocow.js
@@ -54,16 +56,8 @@ module.exports = function(target, opts) {
   var defaultAudio = fs.readFileSync(__dirname + '/Mudchute_cow_1.ogg');
 
   var audioFiles = {
-    cow: createAudioFromBlob(new Blob([defaultAudio], { type: 'audio/ogg' }))
+    cow: crel('audio', { src: bufferUrl(defaultAudio) })
   };
-
-  function createAudioFromBlob(blob) {
-    var audio = document.createElement('audio');
-
-    audio.src = URL.createObjectURL(blob);
-
-    return audio;
-  }
 
   function handleMutations(records) {
     var addedNodes = flatten(records.map(pluck('addedNodes')));
