@@ -51,26 +51,17 @@ var crel = require('crel');
 
 **/
 module.exports = function(target, opts) {
-  var observer = new MutationObserver(handleMutations);
-  var stop = observer.disconnect.bind(observer);
-  var defaultAudio = fs.readFileSync(__dirname + '/Mudchute_cow_1.ogg');
+  var defaultAudio = fs.readFileSync(__dirname + '/audio/Mudchute_cow_1.ogg');
 
   var audioFiles = {
     cow: crel('audio', { src: bufferUrl(defaultAudio) })
   };
 
-  function handleMutations(records) {
-    var addedNodes = flatten(records.map(pluck('addedNodes')));
-    if (addedNodes.length > 0) {
+  return mucus(target, function(added, removed) {
+    if (added.length > 0) {
       audioFiles.cow.play();
     }
-  }
-
-  observer.observe(target, extend({
-    attributes: false,
-    childList: true,
-    characterData: false
-  }, opts));
+  });
 
   return stop;
 };
