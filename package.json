@@ -31,8 +31,7 @@
     "buffer-url": "^1.0.0",
     "cog": "^1.0.0",
     "crel": "^2.1.8",
-    "flatten-list": "0.0.2",
-    "whisk": "^1.1.0"
+    "mucus": "^1.0.0"
   },
   "browserify": {
     "transform": [
