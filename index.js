@@ -1,4 +1,5 @@
 var extend = require('cog/extend');
+var mucus = require('mucus');
 var fs = require('fs');
 var bufferUrl = require('buffer-url');
 var crel = require('crel');
@@ -55,11 +56,9 @@ module.exports = function(target, opts) {
     cow: crel('audio', { src: bufferUrl(defaultAudio) })
   };
 
-  return mucus(target, function(added, removed) {
-    if (added.length > 0) {
+  return mucus(target, function(changes) {
+    if (changes.added.length > 0) {
       audioFiles.cow.play();
     }
   });
-
-  return stop;
 };
