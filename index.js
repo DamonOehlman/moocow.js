@@ -17,11 +17,11 @@ var crel = require('crel');
 
   ## Ready to Use on Any Website
 
-  Because I know how important this script is, it's been browserified to a UMDjs
-  module that can be included using any script tag using the following url:
+  Thanks to the amazing power of [`browserify-cdn`](https://wzrd.in/), moocow.js
+  can be used on any website!
 
   ```html
-  <script src="https://cdn.rawgit.com/DamonOehlman/moocow.js/v1.0.2/bundle.js"></script>
+  <script src="https://wzrd.in/standalone/moocow@latest"></script>
   <script>
   var newEl = document.createElement('div');
 
@@ -35,7 +35,7 @@ var crel = require('crel');
 
   ```js
   var script = document.createElement('script');
-  script.src = 'https://cdn.rawgit.com/DamonOehlman/moocow.js/v1.0.2/bundle.js';
+  script.src = 'https://wzrd.in/standalone/moocow@latest';
   document.body.appendChild(script);
   ```
 
