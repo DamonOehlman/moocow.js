@@ -1,6 +1,6 @@
 {
   "name": "moocow",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A mutation observer that plays a sound when a child element is added to the DOM",
   "main": "index.js",
   "scripts": {
