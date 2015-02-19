@@ -1,7 +1,7 @@
 {
   "name": "moocow",
   "version": "1.0.0",
-  "description": "A mutation observer that plays a sound when a DOM element changes",
+  "description": "A mutation observer that plays a sound when a child element is added to the DOM",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
