@@ -18,7 +18,7 @@ Because I know how important this script is, it's been browserified to a UMDjs
 module that can be included using any script tag using the following url:
 
 ```html
-<script src="https://cdn.rawgit.com/DamonOehlman/moocow.js/v1.0.0/bundle.js"></script>
+<script src="https://cdn.rawgit.com/DamonOehlman/moocow.js/v1.0.1/bundle.js"></script>
 <script>
 var newEl = document.createElement('div');
 
@@ -32,7 +32,7 @@ currently displayed page (this might be blocked by cross origin policy):
 
 ```js
 var script = document.createElement('script');
-script.src = 'https://cdn.rawgit.com/DamonOehlman/moocow.js/v1.0.0/bundle.js';
+script.src = 'https://cdn.rawgit.com/DamonOehlman/moocow.js/v1.0.1/bundle.js';
 document.body.appendChild(script);
 ```
 
