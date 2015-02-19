@@ -1,5 +1,6 @@
 var extend = require('cog/extend');
 var pluck = require('whisk/pluck');
+var flatten = require('flatten-list');
 var fs = require('fs');
 
 /**
@@ -65,8 +66,7 @@ module.exports = function(target, opts) {
   }
 
   function handleMutations(records) {
-    var addedNodes = records.map(pluck('addedNodes')).reduce(require('whisk/flatten'));
-
+    var addedNodes = flatten(records.map(pluck('addedNodes')));
     if (addedNodes.length > 0) {
       audioFiles.cow.play();
     }
