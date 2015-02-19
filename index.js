@@ -27,6 +27,21 @@ var fs = require('fs');
   </script>
   ```
 
+  Or you can use it on any site in using developer tools - load the script into the
+  currently displayed page (this might be blocked by cross origin policy):
+
+  ```js
+  var script = document.createElement('script');
+  script.src = 'https://cdn.rawgit.com/DamonOehlman/moocow.js/v1.0.0/bundle.js';
+  document.body.appendChild(script);
+  ```
+
+  Now inspect an element, and you can moocow enable it:
+
+  ```js
+  moocow($0);
+  ```
+
   ## Acknowledgements
 
   - [Mudchute_cow_1.ogg](http://commons.wikimedia.org/wiki/File:Mudchute_cow_1.ogg)
